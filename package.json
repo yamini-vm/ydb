@@ -1,0 +1,31 @@
+{
+  "name": "ydb",
+  "version": "1.0.0",
+  "description": "YamASM and YaminiVM debugger",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yamini-vm/ydb.git"
+  },
+  "keywords": [
+    "Yamini",
+    "VM",
+    "Debugger",
+    "Rust",
+    "Python",
+    "JS"
+  ],
+  "author": "Siddhartha Dhar Choudhury",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yamini-vm/ydb/issues"
+  },
+  "homepage": "https://github.com/yamini-vm/ydb#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
