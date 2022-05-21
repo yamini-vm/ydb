@@ -1,0 +1,42 @@
+<%- include('includes/header.ejs') %>
+
+    <% if (isAsm) { %>
+        <div>
+            <p>
+                <label for="asm_filepath"><strong>Path to (.yas) file:</strong></label>
+                <br>
+                <input type="text" id="asm_filepath" class="input" placeholder="Enter the path to the assembly file">
+            </p>
+
+            <p>
+                <input type="button" id="asm-tokens" class="button" value="Generate Tokens">
+                <input type="button" id="asm-instructions" class="button" value="Generate Instructions">
+            </p>
+        </div>
+    <% } else { %>
+        <div>
+            <p>
+                <label for="asm_filepath"><strong>Path to executable binary file:</strong></label>
+                <br>
+                <input type="text" id="bin_filepath" class="input" placeholder="Enter the path to the binary file">
+            </p>
+
+            <p>
+                <input type="button" id="bin-instructions" class="button" value="Generate Instructions">
+            </p>
+        </div>
+    <% } %>
+
+    <div id="debug-div" style="display: none;">
+        <div id="code" class="result-box">
+
+        </div>
+
+        <div id="debug" class="result-box">
+
+        </div>
+    </div>
+
+    <%- include('./includes/js-includes.ejs', {jsFile: jsFile}) %>
+</body>
+</html>

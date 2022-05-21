@@ -29,3 +29,20 @@ h1 {
 .code_line {
     background: #d1f0ff;
 }
+
+.result-box {
+    width: 46%;
+    height: 80vh;
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#code {
+    float: left;
+}
+
+#debug {
+    float: right;
+}
