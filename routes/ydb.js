@@ -6,4 +6,10 @@ const router = express.Router();
 
 router.get('/', xdbController.getIndex);
 
+router.get('/asm', xdbController.getASM);
+
+router.get('/bin', xdbController.getBin);
+
+router.post('/debug', xdbController.postDebug);
+
 module.exports = router;
