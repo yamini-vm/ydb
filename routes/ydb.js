@@ -14,4 +14,8 @@ router.post('/debug', xdbController.postDebug);
 
 router.post('/asm-tokens', xdbController.postAsmTokens);
 
+router.post('/asm-instructions', xdbController.postAsmInstructions);
+
+router.post('/bin-instructions', xdbController.postBinInstructions);
+
 module.exports = router;

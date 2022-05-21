@@ -81,10 +81,14 @@ let check_file_exists = (file_path) => {
     };
 };
 
-let perform_file_checks = (file_path) => {
-    let result = check_correct_extension(file_path, "yas");
-    if (result['icon'] == 'error') {
-        return result;
+let perform_file_checks = (file_path, check_ext) => {
+    let result;
+
+    if (check_ext) {
+        result = check_correct_extension(file_path, "yas");
+        if (result['icon'] == 'error') {
+            return result;
+        }
     }
 
     result = check_file_exists(file_path);
@@ -97,18 +101,16 @@ let perform_file_checks = (file_path) => {
     }
 }
 
-exports.postAsmTokens = (req, res, next) => {
-    let file_path = req.body.file_path;
-
-    let result = perform_file_checks(file_path);
+let execute_and_return = (cmd, file_path, check_ext) => {
+    let result = perform_file_checks(file_path, check_ext);
     if (result['icon'] == 'error') {
-        return res.send(JSON.stringify(result));
+        return result;
     }
 
     let file_html = "<pre>";
     result = read_file(file_path);
     if (result['icon'] == 'error') {
-        return res.send(JSON.stringify(result));
+        return result;
     } else {
         file_html += result['data'];
     }
@@ -116,18 +118,41 @@ exports.postAsmTokens = (req, res, next) => {
     file_html += "</pre>";
 
     let tokens = "<pre>";
-    
-    let cmd = "yamasm " + file_path + " --tokens";
     tokens += execSync(cmd);
-
     tokens += "</pre>";
 
-    return res.send(JSON.stringify({
+    return {
         "icon": "success",
         "title": "Success",
         "text": "Started debugging successfully!",
         "showResult": true,
         "code": file_html,
         "debug": tokens,
-    }));
+    };
+}
+
+exports.postAsmTokens = (req, res, next) => {
+    let file_path = req.body.file_path;
+    let cmd = "yamasm " + file_path + " --tokens"; 
+    let result = execute_and_return(cmd, file_path, true);
+
+    return res.send(JSON.stringify(result));
 };
+
+exports.postAsmInstructions = (req, res, next) => {
+    let file_path = req.body.file_path;
+    let cmd = "yamasm " + file_path + " --instructions"; 
+    let result = execute_and_return(cmd, file_path, true);
+
+    return res.send(JSON.stringify(result));
+}
+
+exports.postBinInstructions = (req, res, next) => {
+    let file_path = req.body.file_path;
+    let cmd = "yamini " + file_path + " --instructions"; 
+    let result = execute_and_return(cmd, file_path, false);
+
+    result['code'] = "Cannot display binary!";
+
+    return res.send(JSON.stringify(result));
+}

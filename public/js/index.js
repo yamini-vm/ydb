@@ -3,7 +3,7 @@ $(document).ready(function() {
         return prog_type != "sel";
     }
 
-    $("#debug").click(() => {
+    $("#debug-btn").click(() => {
         register_check_function("prog_type", prog_type_check, " select a program type!");
 
         let data = {"prog_type": ["prog_type"]};
