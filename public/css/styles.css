@@ -21,3 +21,11 @@
     width: 25%;
     outline: 0;
 }
+
+h1 {
+    text-align: center;
+}
+
+.code_line {
+    background: #d1f0ff;
+}
