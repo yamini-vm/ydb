@@ -24,4 +24,4 @@ user@programmer~:$ npm start
 
 ## License
 
-This project is licensed under <a href="https://github.com/yamini-vm/ydb/blob/master/LICENSE">MIT License</a>.
+This project is licensed under the <a href="https://github.com/yamini-vm/ydb/blob/master/LICENSE">MIT license</a>.
