@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const xdbRoutes = require('./routes/ydb');
+const ydbRoutes = require('./routes/ydb');
 
 const app = express();
 
@@ -18,6 +18,6 @@ if (argv.length > 2) {
 }
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(xdbRoutes);
+app.use(ydbRoutes);
 
 app.listen(8080);
